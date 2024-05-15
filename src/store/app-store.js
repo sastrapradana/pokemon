@@ -18,6 +18,14 @@ const useAppStore = create((set) => ({
       console.log(error);
     }
   },
+
+  keranjang: [],
+  updateKeranjang: (data) =>
+    set((state) => ({ keranjang: [...state.keranjang, data] })),
+  deleteItemKeranjang: (name) =>
+    set((state) => ({
+      keranjang: state.keranjang.filter((item) => item.name !== name),
+    })),
 }));
 
 export default useAppStore;

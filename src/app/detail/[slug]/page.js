@@ -1,3 +1,4 @@
+import AppShel from "@/components/layout/appshel";
 import Image from "next/image";
 import Link from "next/link";
 async function getPokemonData(slug) {
@@ -15,49 +16,42 @@ export default async function Page({ params }) {
   console.log({ pokemonData });
 
   return (
-    <>
-      <div className="w-full h-max  p-2">
-        <button>
-          <Link href={"/"}>Back</Link>
-        </button>
-      </div>
-      <div className="w-full h-max">
-        <div className="w-[90%] min-h-[100vh] max-h-max m-auto flex justify-center items-center gap-4">
-          <div className="w-max h-max text-center flex flex-col justify-center items-center">
-            <img
-              src={pokemonData.sprites.back_default}
-              alt="pokemon_image"
-              className="w-[300px] h-[300px] object-cover border rounded-full"
-            />
-          </div>
-          <div className="w-max h-[200px] flex flex-col gap-3 text-[1.5rem]">
-            <h1>
-              Name:{" "}
-              <span className="text-red-500  text-[1.5rem] capitalize font-semibold">
-                {slug}
-              </span>
-            </h1>
-            <div className="flex items-center gap-3">
-              <p>Type : </p>
-              {pokemonData.types.map((type) => (
-                <button
-                  className={`px-4 rounded-md capitalize ${
-                    type.type.name == "fire"
-                      ? "bg-orange-300 "
-                      : type.type.name == "poison"
-                      ? "bg-sky-300"
-                      : type.type.name == "water"
-                      ? "bg-blue-400"
-                      : "bg-green-300"
-                  } `}
-                >
-                  {type.type.name}
-                </button>
-              ))}
-            </div>
+    <AppShel>
+      <div className="w-full h-[80vh] m-auto flex justify-center items-center gap-4">
+        <div className="w-max h-max text-center flex flex-col justify-center items-center">
+          <img
+            src={pokemonData.sprites.back_default}
+            alt="pokemon_image"
+            className="w-[300px] h-[300px] object-cover border rounded-full"
+          />
+        </div>
+        <div className="w-max h-[200px] flex flex-col gap-3 text-[1.5rem]">
+          <h1>
+            Name:{" "}
+            <span className="text-red-500  text-[1.5rem] capitalize font-semibold">
+              {slug}
+            </span>
+          </h1>
+          <div className="flex items-center gap-3">
+            <p>Type : </p>
+            {pokemonData.types.map((type) => (
+              <button
+                className={`px-4 rounded-md capitalize ${
+                  type.type.name == "fire"
+                    ? "bg-orange-300 "
+                    : type.type.name == "poison"
+                    ? "bg-sky-300"
+                    : type.type.name == "water"
+                    ? "bg-blue-400"
+                    : "bg-green-300"
+                } `}
+              >
+                {type.type.name}
+              </button>
+            ))}
           </div>
         </div>
       </div>
-    </>
+    </AppShel>
   );
 }
